@@ -398,6 +398,7 @@ For a solo operator, fast detection and simple recovery matter more than the num
 - [Trunk Based Development](https://trunkbaseddevelopment.com/) for frequent integration into the main branch
 - [Semantic Versioning](https://semver.org/) and [Conventional Commits](https://www.conventionalcommits.org/)
 - [Shields.io](https://shields.io/) and [Badgen](https://badgen.net/) for repository badges
+- [Markdown Badges](https://github.com/Ileriayo/markdown-badges): Curated collection of Markdown badges for developer profiles and projects
 
 ## Created by
 

@@ -887,6 +887,7 @@
 
 - [Shields.io](https://shields.io/): 저장소와 프로젝트 상태를 표시하는 배지 생성 서비스
 - [Badgen](https://badgen.net/): 빠르고 간결한 SVG 배지 생성 서비스
+- [Markdown Badges](https://github.com/Ileriayo/markdown-badges): 개발자 프로필과 프로젝트용 Markdown 배지 모음
 
 ## 만든 곳
 
