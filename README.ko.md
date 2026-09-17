@@ -886,6 +886,10 @@
 - [Shields.io](https://shields.io/): 저장소와 프로젝트 상태를 표시하는 배지 생성 서비스
 - [Badgen](https://badgen.net/): 빠르고 간결한 SVG 배지 생성 서비스
 
+## 만든 곳
+
+이 핸드북은 [도깨비클럽 Dokkabi Club](https://dokkabiclub.dev/?utm_source=github&utm_medium=referral&utm_campaign=tech-stack-handbook)에서 만들고 관리합니다.
+
 ## 라이선스
 
 Copyright © 2026 Lee Jihye. 이 문서는 [Creative Commons Attribution 4.0 International License](LICENSE)를 따릅니다.

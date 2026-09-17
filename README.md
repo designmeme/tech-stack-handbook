@@ -397,6 +397,10 @@ For a solo operator, fast detection and simple recovery matter more than the num
 - [Semantic Versioning](https://semver.org/) and [Conventional Commits](https://www.conventionalcommits.org/)
 - [Shields.io](https://shields.io/) and [Badgen](https://badgen.net/) for repository badges
 
+## Created by
+
+Created and maintained by [Dokkabi Club](https://dokkabiclub.dev/?utm_source=github&utm_medium=referral&utm_campaign=tech-stack-handbook).
+
 ## License
 
 Copyright © 2026 Lee Jihye. This work is licensed under the [Creative Commons Attribution 4.0 International License](LICENSE).
