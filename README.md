@@ -1,18 +1,21 @@
-# Tech Stack Handbook
+# Web Tech Stack Handbook 2026
 
-현대적인 소프트웨어 개발에 사용할 수 있는 기술과 서비스를 분야별로 정리한 핸드북입니다. 
-프런트엔드와 웹 개발 생태계를 중심으로 다룹니다.
+> 프런트엔드에서 배포·운영까지, 1인 웹 빌더를 위한 풀스택 기술 핸드북
+
+프런트엔드, 백엔드, 데이터베이스, 배포와 제품 운영까지 웹 서비스를 구축하는 데 필요한 기술과 서비스를 정리합니다.
+
+신규 프로젝트의 채택 추세뿐 아니라 **개발 속도, 운영 부담, 비용, 확장성**을 함께 고려합니다.
 
 ## 목록 정렬 원칙
 
 같은 역할을 하는 기술은 다음 순서로 배치합니다. 다운로드 수나 누적 사용자 수만으로 판단하지 않고, 
 **신규 프로젝트에서의 채택 추세와 권장도**를 우선합니다.
 
-1. 신규 프로젝트에서 널리 선택되는 기술
-2. 생태계와 유지보수가 안정적인 대안
-3. 특정 요구사항에 적합한 기술
-4. 성숙했지만 신규 채택 우선순위가 낮은 기술
-5. Experimental 또는 Legacy 기술
+1. 혼자 빠르게 구축하고 운영하기 좋은 기술
+2. 신규 프로젝트에서 널리 선택되는 기술
+3. 생태계와 유지보수가 안정적인 대안
+4. 특정 규모나 요구사항에 적합한 기술
+5. 운영 부담이 크거나 Experimental 또는 Legacy인 기술
 
 역할이 서로 다른 기술은 직접 비교하지 않으며, 각 목록은 정기적으로 최신 상태를 검토합니다.
 
@@ -22,11 +25,17 @@
 - [Content and documentation](#content-and-documentation)
 - [Styling and UI](#styling-and-ui)
 - [Data and APIs](#data-and-apis)
+- [Backend and server](#backend-and-server)
+- [Background jobs and workflows](#background-jobs-and-workflows)
+- [Email and notifications](#email-and-notifications)
+- [Cache and application infrastructure](#cache-and-application-infrastructure)
+- [Search](#search)
 - [State management](#state-management)
 - [Authentication](#authentication)
 - [Development tools](#development-tools)
 - [Testing](#testing)
 - [Deployment and hosting](#deployment-and-hosting)
+- [Operations](#operations)
 - [Quality, security, and observability](#quality-security-and-observability)
 - [Product integrations](#product-integrations)
 - [Data visualization](#data-visualization)
@@ -269,13 +278,118 @@
 
 ### Managed databases
 
+- [Supabase Database](https://supabase.com/database): 인증과 Storage를 함께 사용할 수 있는 관리형 PostgreSQL
 - [Neon](https://neon.com/): Serverless PostgreSQL 플랫폼
+- [Turso](https://turso.tech/): libSQL 기반 Edge database 플랫폼
 - [PlanetScale](https://planetscale.com/): MySQL과 PostgreSQL을 지원하는 관리형 데이터베이스 플랫폼
+- [Cloudflare D1](https://developers.cloudflare.com/d1/): Cloudflare Workers와 통합되는 관리형 Serverless SQL database
 
 ### Object storage
 
 - [Vercel Blob](https://vercel.com/docs/storage/vercel-blob): Vercel 애플리케이션용 객체 스토리지
+- [Cloudflare R2](https://developers.cloudflare.com/r2/): S3 API와 호환되며 Egress fee가 없는 객체 스토리지
+- [Supabase Storage](https://supabase.com/storage): Supabase Auth와 Row Level Security를 연동할 수 있는 객체 스토리지
 - [Amazon S3](https://aws.amazon.com/s3/): 범용 객체 스토리지 서비스
+
+## Backend and server
+
+프런트엔드와 별도 서버를 처음부터 분리하기보다, 제품 요구사항이 생길 때 분리합니다. 일반적인 CRUD와 인증은 Full-stack framework 안에서 시작하고 Python 생태계, 독립적인 확장 또는 복잡한 도메인이 필요할 때 전용 API 서버를 둡니다.
+
+### Full-stack backends
+
+- [Next.js Route Handlers](https://nextjs.org/docs/app/getting-started/route-handlers): App Router 안에서 HTTP API를 구현하는 기본 방식
+- [Next.js Server Functions and Actions](https://nextjs.org/docs/app/getting-started/updating-data): 폼 제출과 데이터 변경을 서버에서 처리하는 방식
+
+### TypeScript API frameworks
+
+- [Hono](https://hono.dev/): Web Standards 기반의 경량 멀티 런타임 웹 프레임워크
+- [Fastify](https://fastify.dev/): 낮은 오버헤드와 플러그인 구조를 갖춘 Node.js 웹 프레임워크
+- [NestJS](https://nestjs.com/): 모듈과 의존성 주입을 제공하는 대규모 Node.js 애플리케이션 프레임워크
+- [Express](https://expressjs.com/): 생태계가 넓은 전통적인 Node.js 웹 프레임워크
+
+### Python API frameworks
+
+- [FastAPI](https://fastapi.tiangolo.com/): 타입 힌트와 OpenAPI를 활용하는 Python API 프레임워크
+- [Django](https://www.djangoproject.com/): ORM, 관리자 화면과 인증을 포함하는 Python 웹 프레임워크
+- [Flask](https://flask.palletsprojects.com/): 작은 서비스와 기존 프로젝트에 적합한 경량 Python 웹 프레임워크
+
+### API design and reliability
+
+- [REST](https://developer.mozilla.org/docs/Glossary/REST): 범용 HTTP API 설계 방식
+- [Webhooks](https://www.svix.com/resources/webhooks/): 외부 서비스의 이벤트를 HTTP로 수신하는 통합 방식
+- [Idempotency](https://docs.stripe.com/api/idempotent_requests): 재시도에도 중복 처리를 막는 요청 설계 원칙
+- [OpenAPI](https://www.openapis.org/): HTTP API를 문서화하고 도구와 연결하는 표준 명세
+
+## Background jobs and workflows
+
+메일 발송, Webhook 재시도, 정기 동기화와 AI 처리처럼 요청 안에서 끝내기 어려운 작업에 사용합니다. 1인 운영에서는 직접 Queue worker를 관리하기 전에 관리형 서비스를 우선 검토합니다.
+
+### Managed jobs and durable workflows
+
+- [Inngest](https://www.inngest.com/): 이벤트 기반 Background job과 단계별 재시도를 제공하는 관리형 플랫폼
+- [Trigger.dev](https://trigger.dev/): TypeScript 기반 장시간 작업과 Scheduled task 실행 플랫폼
+- [Upstash Workflow](https://upstash.com/docs/workflow/getstarted): Serverless 환경용 Durable workflow SDK
+
+### Queues and message delivery
+
+- [Upstash QStash](https://upstash.com/docs/qstash/overall/getstarted): HTTP 기반 메시지 전달, 예약과 자동 재시도 서비스
+- [Cloudflare Queues](https://developers.cloudflare.com/queues/): Cloudflare Workers와 통합되는 관리형 Message queue
+- [BullMQ](https://docs.bullmq.io/): Redis 기반 Node.js Queue. Worker와 Redis 운영이 필요한 경우에 적합
+
+### Scheduled jobs
+
+- [Vercel Cron Jobs](https://vercel.com/docs/cron-jobs): Vercel Function을 정해진 일정에 호출하는 기능
+- [Cloudflare Cron Triggers](https://developers.cloudflare.com/workers/configuration/cron-triggers/): Workers용 Scheduled event
+- [GitHub Actions](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#schedule): 저장소 작업과 배치 스크립트를 위한 Scheduled workflow
+
+## Email and notifications
+
+### Transactional email
+
+- [Resend](https://resend.com/): 개발자 중심의 Transactional email API
+- [Postmark](https://postmarkapp.com/): Transactional email 전송과 전달 상태 추적 서비스
+- [Amazon SES](https://aws.amazon.com/ses/): 대량 발송에 적합한 AWS 이메일 전송 서비스
+
+### Email templates
+
+- [React Email](https://react.email/): React 컴포넌트로 이메일 템플릿을 작성하는 도구
+
+### Marketing email
+
+- [Buttondown](https://buttondown.com/): 개인과 소규모 팀에 적합한 Newsletter 서비스
+- [Mailchimp](https://mailchimp.com/): Audience 관리와 Marketing automation 플랫폼
+
+### Push notifications
+
+- [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging): 웹과 모바일 앱용 Cross-platform push messaging
+- [OneSignal](https://onesignal.com/): Push, In-app message와 이메일을 제공하는 Customer messaging 플랫폼
+
+## Cache and application infrastructure
+
+### Managed cache and key-value storage
+
+- [Upstash Redis](https://upstash.com/docs/redis/overall/getstarted): Serverless와 Edge 환경에 적합한 관리형 Redis 호환 서비스
+- [Upstash for Redis on Vercel](https://vercel.com/marketplace/upstash): Vercel Marketplace에서 연결하는 관리형 Redis 호환 서비스
+- [Cloudflare Workers KV](https://developers.cloudflare.com/kv/): 읽기 중심의 전역 분산 Key-value storage
+- [Redis](https://redis.io/): Cache, session과 Queue에 사용하는 In-memory data store. 직접 운영할 때 관리 부담을 고려
+
+### Common uses
+
+- Cache: 느리거나 비용이 큰 조회 결과를 짧게 보관
+- Rate limiting: 사용자, IP 또는 API key 단위로 요청량 제한
+- Session storage: 여러 서버 인스턴스가 공유하는 로그인 상태 저장
+- Distributed locks: 여러 작업이 같은 자원을 동시에 변경하지 않도록 조정
+
+## Search
+
+데이터가 많지 않거나 검색 요구가 단순하면 PostgreSQL에서 시작하고, 오타 허용·Faceting·관련도 조정이 중요해질 때 전용 검색 엔진을 도입합니다.
+
+- [PostgreSQL Full Text Search](https://www.postgresql.org/docs/current/textsearch.html): 별도 검색 인프라 없이 시작하는 전문 검색
+- [Meilisearch](https://www.meilisearch.com/docs): 빠른 도입과 오타 허용에 초점을 둔 오픈소스 검색 엔진
+- [Typesense](https://typesense.org/docs/): 즉시 검색과 Faceting을 제공하는 오픈소스 검색 엔진
+- [Algolia](https://www.algolia.com/doc/): 관리형 Search-as-a-Service
+- [OpenSearch](https://opensearch.org/docs/latest/): 대규모 검색과 로그 분석을 위한 분산 검색 엔진
+- [pgvector](https://github.com/pgvector/pgvector): PostgreSQL에 Vector similarity search를 추가하는 확장
 
 ## State management
 
@@ -345,6 +459,13 @@
 - [npm](https://www.npmjs.com/): Node.js에 기본 포함되는 JavaScript 패키지 관리자
 - [Yarn](https://yarnpkg.com/): Plug'n'Play과 워크스페이스 기능을 제공하는 패키지 관리자
 
+### Python project tools
+
+- [uv](https://docs.astral.sh/uv/): Python version, 가상 환경, 의존성과 Lockfile을 함께 관리하는 빠른 프로젝트 도구
+- [Ruff](https://docs.astral.sh/ruff/): Python Linter와 Formatter
+- [Pyright](https://microsoft.github.io/pyright/): Python 정적 타입 검사기
+- [Poetry](https://python-poetry.org/): Python 의존성과 패키징 관리 도구
+
 ### Build tools
 
 - [Vite](https://vite.dev/): Rolldown과 Oxc 기반 프런트엔드 빌드 도구 (v7 이하: esbuild + Rollup 조합 사용)
@@ -377,6 +498,7 @@
 
 - [Vitest](https://vitest.dev/): Vite 생태계와 통합되는 테스트 프레임워크
 - [Jest](https://jestjs.io/): JavaScript와 TypeScript 테스트 프레임워크
+- [pytest](https://docs.pytest.org/): Python 테스트 프레임워크
 
 ### Component testing
 
@@ -386,6 +508,12 @@
 
 - [Playwright](https://playwright.dev/): 크로스 브라우저 E2E 및 웹 자동화 도구
 - [Cypress](https://www.cypress.io/): 대화형 개발 경험을 제공하는 E2E 테스트 도구
+
+### API and load testing
+
+- [Bruno](https://www.usebruno.com/): API collection을 저장소에서 관리할 수 있는 오픈소스 API client
+- [Postman](https://www.postman.com/): API 설계, 테스트와 협업 플랫폼
+- [k6](https://grafana.com/docs/k6/latest/): 코드 기반 Load testing 도구
 
 ## Deployment and hosting
 
@@ -455,6 +583,42 @@
 - [ICANN Lookup](https://lookup.icann.org/): 도메인 등록 정보 조회 도구
 - [who.is](https://who.is/): 도메인 등록기관, 만료일 및 공개 WHOIS 정보 조회 도구
 
+## Operations
+
+1인 운영에서는 도구의 기능 수보다 장애를 빨리 발견하고 적은 단계로 복구할 수 있는지가 중요합니다. 배포 전에 아래 항목의 소유 위치와 복구 절차를 정합니다.
+
+### Secrets and configuration
+
+- Hosting platform environment variables: 작은 프로젝트에서 가장 단순한 기본 선택
+- [Doppler](https://www.doppler.com/): 여러 환경과 서비스의 Secret을 중앙에서 관리하는 플랫폼
+- [1Password Secrets Automation](https://developer.1password.com/docs/secrets-automation/): 1Password vault의 Secret을 CI와 애플리케이션에 연결하는 도구
+- 원칙: Secret을 저장소와 클라이언트 번들에 넣지 않고, 개발·Preview·Production 값을 분리하며 교체 절차를 기록
+
+### Uptime and status
+
+- [Better Stack Uptime](https://betterstack.com/uptime): Uptime monitoring, On-call과 Status page 서비스
+- [UptimeRobot](https://uptimerobot.com/): 간단한 HTTP, Keyword와 Port monitoring 서비스
+- [Checkly](https://www.checklyhq.com/): Playwright 기반 Synthetic monitoring과 API check 플랫폼
+
+### Backups and recovery
+
+- Managed database의 자동 Backup과 Point-in-time recovery 제공 여부를 먼저 확인
+- [pg_dump](https://www.postgresql.org/docs/current/app-pgdump.html): PostgreSQL의 논리 Backup 도구
+- Database뿐 아니라 Object storage, DNS, 환경 변수와 외부 서비스 설정의 복구 방법도 기록
+- Backup 생성 여부가 아니라 별도 환경에서 실제 Restore가 되는지 정기적으로 확인
+
+### Feature flags
+
+- [PostHog Feature Flags](https://posthog.com/docs/feature-flags): Product analytics와 함께 사용하는 Feature flag
+- [Flags SDK](https://flags-sdk.dev/): Next.js와 여러 Provider를 연결하는 Feature flag 표준화 도구
+- [Unleash](https://docs.getunleash.io/): 자체 호스팅이 가능한 오픈소스 Feature management 플랫폼
+
+### Cost controls
+
+- Hosting, database, email, storage와 AI provider에 Budget alert를 설정
+- 사용량 기반 서비스는 Rate limit, 월별 상한과 이상 사용량 알림을 함께 구성
+- Preview deployment와 사용하지 않는 데이터베이스·스토리지·로그의 정리 주기를 결정
+
 ## Quality, security, and observability
 
 ### Performance
@@ -481,16 +645,33 @@
 
 ### Security
 
+#### Guides and browser security
+
 - [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/): 웹 보안 테스트 지침
 - [Content Security Policy](https://developer.mozilla.org/docs/Web/HTTP/CSP): 스크립트와 리소스 실행 출처를 제한하는 브라우저 보안 정책
 - [Trusted Types](https://developer.mozilla.org/docs/Web/API/Trusted_Types_API): DOM XSS 위험을 줄이는 브라우저 API
 - [DOMPurify](https://github.com/cure53/DOMPurify): 신뢰할 수 없는 HTML을 정화하는 라이브러리
 
+#### Server and integration security
+
+- Authentication과 authorization을 구분하고, 모든 데이터 변경 작업에서 서버가 권한을 다시 확인
+- Cookie 기반 인증은 `Secure`, `HttpOnly`, `SameSite`와 [CSRF](https://owasp.org/www-community/attacks/csrf) 방어를 함께 구성
+- [CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS)는 필요한 Origin, Method와 Header만 허용
+- 결제·인증·메일 등 외부 Webhook은 서명을 검증하고, Idempotency key로 중복 처리를 방지
+- 공개 API와 비용이 발생하는 작업에는 Rate limit과 입력 크기 제한을 적용
+
+#### Dependencies and supply chain
+
+- [Dependabot](https://docs.github.com/code-security/dependabot): 의존성 보안 업데이트와 취약점 알림
+- [`npm audit`](https://docs.npmjs.com/cli/commands/npm-audit): npm 의존성의 알려진 취약점 검사
+- CI에서는 Lockfile을 고정하고 최소 권한의 짧은 수명 Credential을 사용
+
 ### Observability
 
-- [Sentry](https://sentry.io/): 오류 추적과 프런트엔드 성능 모니터링
+- [Sentry](https://sentry.io/): 오류 추적과 애플리케이션 성능 모니터링
 - [OpenTelemetry](https://opentelemetry.io/): 벤더 중립적인 로그, 메트릭 및 트레이스 표준
 - [Web Vitals](https://github.com/GoogleChrome/web-vitals): 실제 사용자 환경의 Core Web Vitals 측정 라이브러리
+- 운영 원칙: 요청 ID와 배포 버전을 로그·오류에 포함하고, 사용자 정보와 Secret은 기록하지 않으며 보관 기간을 설정
 
 ### Browser compatibility
 
@@ -565,6 +746,13 @@
 - [Airbridge](https://www.airbridge.io/): 웹과 앱의 마케팅 기여도 측정 플랫폼
 - [Meta Pixel](https://www.facebook.com/business/tools/meta-pixel): Meta 광고 전환 측정 및 리타게팅 도구
 - [카카오 픽셀 & SDK](https://business.kakao.com/info/pixelsdk/): 카카오 광고 전환 및 사용자 행동 측정 도구
+
+#### Consent and privacy
+
+- [Google Consent Mode](https://developers.google.com/tag-platform/security/guides/consent): 사용자의 동의 상태를 Google tag 동작에 반영하는 방식
+- [Klaro](https://klaro.org/): 자체 호스팅이 가능한 오픈소스 Consent manager
+- [Cookiebot](https://www.cookiebot.com/): Cookie scan과 Consent banner를 제공하는 관리형 플랫폼
+- 원칙: 서비스 지역과 수집 정보에 맞는 개인정보 처리방침을 작성하고, 동의 전에는 불필요한 분석·광고 Script를 실행하지 않음
 
 ### Payments and monetization
 
