@@ -329,6 +329,8 @@ For a solo operator, fast detection and simple recovery matter more than the num
 ### Observability and compatibility
 
 - [Sentry](https://sentry.io/): Error tracking and application performance monitoring
+- [Vercel Observability](https://vercel.com/docs/observability): Vercel-native insights for requests, functions, errors, and usage
+- [Grafana](https://grafana.com/): Dashboards and alerting across metrics, logs, traces, and profiles
 - [OpenTelemetry](https://opentelemetry.io/): Vendor-neutral logs, metrics, and traces
 - [Web Vitals](https://github.com/GoogleChrome/web-vitals): Real-user Core Web Vitals measurement
 - [web.dev Baseline](https://web.dev/baseline), [Browserslist](https://browsersl.ist/), and [Can I Use](https://caniuse.com/) for browser compatibility

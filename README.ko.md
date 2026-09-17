@@ -671,6 +671,8 @@
 ### Observability
 
 - [Sentry](https://sentry.io/): 오류 추적과 애플리케이션 성능 모니터링
+- [Vercel Observability](https://vercel.com/docs/observability): Vercel의 요청, Function, 오류 및 사용량 인사이트 도구
+- [Grafana](https://grafana.com/): 메트릭, 로그, 트레이스와 프로파일을 통합하는 대시보드 및 알림 플랫폼
 - [OpenTelemetry](https://opentelemetry.io/): 벤더 중립적인 로그, 메트릭 및 트레이스 표준
 - [Web Vitals](https://github.com/GoogleChrome/web-vitals): 실제 사용자 환경의 Core Web Vitals 측정 라이브러리
 - 운영 원칙: 요청 ID와 배포 버전을 로그·오류에 포함하고, 사용자 정보와 Secret은 기록하지 않으며 보관 기간을 설정
