@@ -396,3 +396,7 @@ For a solo operator, fast detection and simple recovery matter more than the num
 - [Trunk Based Development](https://trunkbaseddevelopment.com/) for frequent integration into the main branch
 - [Semantic Versioning](https://semver.org/) and [Conventional Commits](https://www.conventionalcommits.org/)
 - [Shields.io](https://shields.io/) and [Badgen](https://badgen.net/) for repository badges
+
+## License
+
+Copyright © 2026 Lee Jihye. This work is licensed under the [Creative Commons Attribution 4.0 International License](LICENSE).
