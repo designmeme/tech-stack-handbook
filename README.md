@@ -528,6 +528,7 @@ If the data is not large or simple to search, it starts at PostgreSQL, and intro
 ### Containers
 
 - [Docker](https://www.docker.com/): Container packaging and execution
+- [Kubernetes](https://kubernetes.io/): Open-source orchestration platform for automating the deployment, scaling, and operation of containerized applications
 
 ### Serverless deployment
 

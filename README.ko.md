@@ -528,6 +528,7 @@
 ### Containers
 
 - [Docker](https://www.docker.com/): 컨테이너 기반 애플리케이션 패키징 및 실행
+- [Kubernetes](https://kubernetes.io/): 컨테이너화된 애플리케이션의 배포, 확장 및 운영을 자동화하는 오픈소스 오케스트레이션 플랫폼
 
 ### Serverless deployment
 
