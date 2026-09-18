@@ -892,7 +892,7 @@
 
 ## 만든 곳
 
-이 핸드북은 [도깨비클럽 Dokkabi Club](https://dokkabiclub.dev/?utm_source=github&utm_medium=referral&utm_campaign=tech-stack-handbook)에서 만들고 관리합니다.
+이 핸드북은 [도깨비클럽 Dokkaebi Club](https://dokkaebiclub.dev/?utm_source=github&utm_medium=referral&utm_campaign=tech-stack-handbook)에서 만들고 관리합니다.
 
 ## 라이선스
 

@@ -892,7 +892,7 @@ In one operation, it is important that you can quickly discover obstacles than t
 
 ## Created by
 
-This handbook is created and maintained by [Dokkabi Club](https://dokkabiclub.dev/?utm_source=github&utm_medium=referral&utm_campaign=tech-stack-handbook).
+This handbook is created and maintained by [Dokkaebi Club](https://dokkaebiclub.dev/?utm_source=github&utm_medium=referral&utm_campaign=tech-stack-handbook).
 
 ## License
 
