@@ -823,6 +823,7 @@
 
 - [Mapbox](https://www.mapbox.com/): 커스텀 벡터 지도와 위치 서비스 플랫폼
 - [Leaflet](https://leafletjs.com/): 오픈 지도 타일과 함께 사용하는 경량 2D 지도 라이브러리
+- [OpenLayers](https://openlayers.org/): 벡터 타일과 다양한 지리 데이터 형식을 지원하는 오픈소스 지도 라이브러리
 
 #### Geospatial visualization
 

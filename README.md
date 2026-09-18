@@ -363,7 +363,7 @@ For a solo operator, fast detection and simple recovery matter more than the num
 ### Maps and location
 
 - [Google Maps Platform](https://developers.google.com/maps), [Kakao Maps](https://apis.map.kakao.com/), and [Naver Maps](https://www.ncloud.com/product/applicationService/maps)
-- [Mapbox](https://www.mapbox.com/) and [Leaflet](https://leafletjs.com/)
+- [Mapbox](https://www.mapbox.com/), [Leaflet](https://leafletjs.com/), and [OpenLayers](https://openlayers.org/)
 - [deck.gl](https://deck.gl/) for large-scale geospatial visualization
 
 ## Data visualization
